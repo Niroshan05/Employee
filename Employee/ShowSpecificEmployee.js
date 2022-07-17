@@ -4,23 +4,29 @@ import Table from 'react-bootstrap/Table';
 export default class ShowSpecificEmployee extends Component {
     constructor(){
         super();
-        this.state={employee:null}
-    }
-    Showall()
-    {
         
-        fetch('http://localhost:50734​/api​/EmployeeDetails​/ShowSpecific').then(res=>res.json())
+       this.state={employee:null
+    }
+    this.show=this.show.bind(this);
+    this.handleChanges=this.handleChange.bind(this);
+        
+    }
+    show(e)
+    {
+        let employeeId=this.state.employeeId;
+        fetch("http://localhost:50733​/api​/EmployeeDetails​/ShowSpecific​/"+employeeId).then(res=>res.json())
         .then(result=>{
             this.setState({employee:result})
         })
     }
     componentDidMount()
     {
-        this.Showall();
+        this.show();
     }
-    componentDidUpdate()
+   
+    handleChange(changeObject)
     {
-        this.Showall();
+        this.setState(changeObject);    
     }
     render() {
         return (
@@ -56,6 +62,7 @@ export default class ShowSpecificEmployee extends Component {
             <th>Phone number</th>
             <th>Department</th>
             <th>Date Joined</th>
+            <th>Manager Id</th>
             <th>Leave Balance</th>
             <th>Password</th>
             </tr>
@@ -73,6 +80,7 @@ export default class ShowSpecificEmployee extends Component {
                 <td> {x.contactNumber} </td>
                 <td> {x.department} </td>
                 <td> {x.dateJoined} </td>
+                <td>{x.managerId}</td>
                 <td> {x.leaveBalance} </td>
                 <td> {x.password} </td>
                 </tr>

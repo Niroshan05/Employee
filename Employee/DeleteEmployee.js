@@ -13,6 +13,7 @@ export default class DeleteEmployee extends Component {
             contactNumber:'',
             department:'',
             dateJoined:'',
+            managerId:'',
             leaveBalance:'',
             password:'',
             checkPassword:''
@@ -22,7 +23,7 @@ export default class DeleteEmployee extends Component {
 }
     delete(){
         let employeeId=this.state.employeeId;
-        fetch("http://localhost:50734/api/EmployeeDetails/DeleteEmployee/"+employeeId,{
+        fetch("http://localhost:50733/api/EmployeeDetails/DeleteEmployee/"+employeeId,{
             "method":"DELETE",
             "headers": 
             {

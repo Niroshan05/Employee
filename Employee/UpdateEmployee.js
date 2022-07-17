@@ -12,6 +12,7 @@ export default class UpdateEmployee extends Component {
             contactNumber:'',
             department:'',
             dateJoined:'',
+            managerId:'',
             leaveBalance:'',
             password:'',
             checkPassword:''
@@ -24,7 +25,7 @@ export default class UpdateEmployee extends Component {
     update()
     {
         let employeeId=this.state.employeeId;
-        fetch("http://localhost:50734/api/EmployeeDetails/UpdateEmployee/"+employeeId,
+        fetch("http://localhost:50733/api/EmployeeDetails/UpdateEmployee/"+employeeId,
         {
             "method":"PATCH",
             "headers": 
@@ -41,6 +42,7 @@ export default class UpdateEmployee extends Component {
             contactNumber:this.state.contactNumber,
             department:this.state.department,
             dateJoined:this.state.dateJoined ,
+            managerId:this.state.managerId,
             leaveBalance:this.state.leaveBalance ,
             password:this.state.password ,
             checkPassword:this.state.checkPassword
@@ -100,6 +102,12 @@ export default class UpdateEmployee extends Component {
                 <td>
                   <label >dateJoined</label>
                   <input className="spacer" type="date" name="dateJoined"  onChange={(e)=>this.handleChange({dateJoined:e.target.value})}></input>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label >dateJoined</label>
+                  <input className="spacer" type="text" name="managerId"  onChange={(e)=>this.handleChange({managerId:e.target.value})}></input>
                 </td>
               </tr>
               <tr>
