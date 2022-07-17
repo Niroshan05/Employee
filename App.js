@@ -12,12 +12,16 @@ import ShowAllCeo from './Ceo/ShowAllCeo';
 import UpdateCeo from './Ceo/UpdateCeo';
 import DeleteCeo from './Ceo/DeleteCeo';
 import ShowSpecificCeo from './Ceo/ShowSpecificCeo';
+import ShowAllManager from './Manager/ShowAllManager';
 import {BrowserRouter,Routes,Route,Link} from 'react-router-dom';
 import { Form } from 'react-bootstrap';
+import Empnav from './Employee/Empnav';
 
 function App() {
   return (
    <>
+   
+   <Empnav/>
     <BrowserRouter>
     <div className="App">
     <Navbar bg="dark" variant="dark">
@@ -36,6 +40,16 @@ function App() {
                 <li className="nav-item">
                   <Link className="nav-link" to={'/ShowAllCeo'}>
                     showw all ceo
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to={'/ShowAllManager'}>
+                    show all manager
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to={'/ShowSpecificEmployee'}>
+                    showw specific
                   </Link>
                 </li>
               </ul>
@@ -71,6 +85,7 @@ function App() {
         <Route path='/UpdateCeo' element={<UpdateCeo/>}></Route>
         <Route path='/DeleteCeo' element={<DeleteCeo/>}></Route>
         <Route path='/ShowSpecificCeo' element={<ShowSpecificCeo/>}></Route>
+        <Route path='/ShowAllManager' element={<ShowAllManager/>}></Route>
       </Routes>
 
     </div>
