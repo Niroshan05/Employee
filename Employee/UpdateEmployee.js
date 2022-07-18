@@ -33,7 +33,7 @@ export default class UpdateEmployee extends Component {
                 "content-type":"application/json",
                  "accept":"application/json"
             },
-    body:JSON.stringify({
+    body:JSON.stringify({ 
 
             // emplyeeid:this.state.emplyeeid,
             firstName:this.state.firstName,
