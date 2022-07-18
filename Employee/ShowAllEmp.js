@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 import Table from 'react-bootstrap/Table';
+
 
 export default class ShowAllEmp extends Component {
     constructor(){
         super();
-        this.state={employee:null}
+        this.state={
+            employee:[]
+        }
     }
-    Showall()
-    {
-        
-        fetch('http://localhost:50733/api/EmployeeDetails/Allemp').then(res=>res.json())
-        .then(result=>{
-            this.setState({employee:result})
+    componentDidMount(){
+        axios.get('http://localhost:50734/api/EmployeeDetails/Allemp')
+        .then(response=>{
+            this.setState({employee:response.data})
+
+        }).catch(error=>{
+            console.warn(error)
         })
-    }
-    componentDidMount()
-    {
-        this.Showall();
     }
     render() {
         return (
@@ -27,8 +28,7 @@ export default class ShowAllEmp extends Component {
                 <tr>
                 <th>Employee Id</th>
                 <th>full name</th>
-                {/* <th>First Name</th>
-                <th>Last Name</th> */}
+               
                 <th>E_Mail</th>
                 <th>Phone number</th>
                 <th>Department</th>
