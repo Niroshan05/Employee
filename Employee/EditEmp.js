@@ -30,7 +30,7 @@ export default class EditEmp extends Component {
     {
         e.preventDefault(this);
         let employeeId=this.state.employeeId;
-        axios.patch('http://localhost:50734/api/EmployeeDetails/UpdateEmployee/'+employeeId,{
+        axios.patch('http://localhost:5000/api/EmployeeDetails/UpdateEmployee/'+employeeId,{
 
             firstName:this.state.firstName,
             lastName:this.state.lastName ,
@@ -59,13 +59,13 @@ export default class EditEmp extends Component {
 
     
     render() {
-        
+        let e_Mail=localStorage.getItem("userName");
         return (
             
           <div className="App-header">
                  
           <Card  style={{ width:'30rem'  }} >
-          <Card.Header className="text-center">Sign in</Card.Header>
+          <Card.Header className="text-center">Editer</Card.Header>
           <Card.Body>
      <form>
      <Form.Group className="mb-0" >
@@ -84,7 +84,7 @@ export default class EditEmp extends Component {
 
          <Form.Group className="mb-0" controlId="formGroupEmail">
          <Form.Label >Email address</Form.Label>
-         <Form.Control type="email" placeholder="Enter email" name="e_Mail" onChange={(e)=>this.handleChange({e_Mail:e.target.value})} />
+         <Form.Control type="email" placeholder="Enter email" defaultValue={e_Mail} name="e_Mail" onChange={(e)=>this.handleChange({e_Mail:e.target.value})} />
          </Form.Group>
 
 

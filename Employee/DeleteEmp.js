@@ -18,7 +18,7 @@ export default class DeleteEmp extends Component {
 }
     delete(){
         let employeeId=this.state.employeeId;
-        axios.delete('http://localhost:50734/api/EmployeeDetails/DeleteEmployee/'+employeeId)
+        axios.delete('http://localhost:5000/api/EmployeeDetails/DeleteEmployee/'+employeeId)
        .then(Response=>{
         alert("data deleted");
 })

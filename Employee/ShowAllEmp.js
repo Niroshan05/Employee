@@ -1,26 +1,29 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 import Table from 'react-bootstrap/Table';
+
 
 export default class ShowAllEmp extends Component {
     constructor(){
         super();
-        this.state={employee:null}
+        this.state={
+            employee:[]
+        }
     }
-    Showall()
-    {
-        
-        fetch('http://localhost:50733/api/EmployeeDetails/Allemp').then(res=>res.json())
-        .then(result=>{
-            this.setState({employee:result})
+    componentDidMount(){
+        axios.get('http://localhost:5000/api/EmployeeDetails/Allemp')
+        .then(response=>{
+            this.setState({employee:response.data})
+
+        }).catch(error=>{
+            console.warn(error)
         })
     }
-    componentDidMount()
-    {
-        this.Showall();
-    }
     render() {
+        let UserName=localStorage.getItem("userName");
         return (
             <>
+            <h1>welcome {UserName}</h1>
             <Table striped bordered hover>
             <thead>
                 

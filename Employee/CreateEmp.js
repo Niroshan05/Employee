@@ -28,7 +28,7 @@ export default class CreateEmp extends Component {
     
     create(e)
     {
-        axios.post('http://localhost:50734/api/EmployeeDetails/AddEmployee',{
+        axios.post('http://localhost:5000/api/EmployeeDetails/AddEmployee',{
 
             firstName:this.state.firstName,
             lastName:this.state.lastName ,
@@ -44,6 +44,7 @@ export default class CreateEmp extends Component {
     }).then(response=>{
         console.warn(response);
         alert("New Employee Added Successsfully");
+        window.location="/Login";
     })
     .catch(error=>{
         alert("error");
@@ -54,6 +55,7 @@ export default class CreateEmp extends Component {
     {
         this.setState(changeObject);    
     }
+    
 
     
     render() {

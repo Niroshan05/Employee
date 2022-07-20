@@ -26,7 +26,7 @@ export default class SearchbyId extends Component {
     SearchById(e){
         e.preventDefault();
         let employeeId=this.state.employeeId;
-        axios.get('http://localhost:50734/api/EmployeeDetails/ShowSpecific/'+employeeId)
+        axios.get('http://localhost:5000/api/EmployeeDetails/ShowSpecific/'+employeeId)
         .then(Response=>{
             this.setState({
                 employeeId:Response.data.employeeId,
@@ -44,6 +44,7 @@ export default class SearchbyId extends Component {
         })
     }
     render() {
+        let empid=localStorage.getItem("empid");
         const{employeeId}=this.state;
         const{firstName}=this.state;
         const{lastName}=this.state;
@@ -63,7 +64,7 @@ export default class SearchbyId extends Component {
                   <thead>
               <tr >
                   <td ><label >Employee ID</label>
-                  <input className="spacer" type="text" name="employeeId" onChange={(e)=>this.setState({employeeId:e.target.value})}></input></td>
+                  <input className="spacer" type="text" name="employeeId" defaultValue={empid} onChange={(e)=>this.setState({employeeId:e.target.value})}></input></td>
                   </tr>
                   <tr>
                   <td><Button variant="danger" onClick={(e)=>this.SearchById(e)}>search</Button>

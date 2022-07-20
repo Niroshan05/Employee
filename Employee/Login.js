@@ -3,6 +3,11 @@ import React, { Component } from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form'; 
+import Alert from 'react-bootstrap/Alert';
+import Col from 'react-bootstrap/Col';
+
+import FloatingLabel from 'react-bootstrap/FloatingLabel'
+
 
 
 
@@ -17,26 +22,39 @@ export default class Login extends Component {
         this.Login=this.Login.bind(this);
         this.handleChange=this.handleChange.bind(this);
     }
+ 
+        
+        
     Login(e){
         e.preventDefault();
         let e_Mail=this.state.e_Mail;
         let password=this.state.password;
-        axios.get('http://localhost:50734/api/EmployeeDetails/Login/'+e_Mail+'/'+password)
-        .then(res=>res)
+        axios.get('http://localhost:5000/api/EmployeeDetails/Login/'+e_Mail+'/'+password)
+        .then(res=>res
+            )
         .then(result=>{
             console.log(result);
-            alert(result);
-            if(result=1){
-                alert("Valid");
-                window.location="/ShowAllEmp";
+            localStorage.setItem("empid",result.data.employeeId)
+             //alert(result);
+            if(result!=null){
+               //alert("Valid");
+                
+                window.location="/EmployeeDashboard";
+                localStorage.setItem("userName",e_Mail)
+                
               }
               else{
                 alert("InValid");
-              }
+                
+                
+              } 
         })
             .catch(err=>{
                 console.log(err);
-                alert(err);
+                 alert(err);
+                
+                return <Alert  variant='dark'>This is a {err} alert—check it out!</Alert>;
+                
             });
     }
     handleChange(e)
@@ -51,21 +69,30 @@ export default class Login extends Component {
                  <Card.Header className="text-center">Sign in</Card.Header>
                  <Card.Body>
             <form>
-            <Form.Group className="mb-0" controlId="formGroupEmail">
-            <Form.Label >Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" name="e_Mail" onChange={(e)=>this.handleChange({e_Mail:e.target.value})} /><br/>
+                <br></br>
+                <Col md>
+            
+            <Form.Group className="mb-4" controlId="formGroupEmail">
+           
+            <FloatingLabel controlId="floatingInputGrid" label="Email address">
+            <Form.Control type="email" placeholder="Enter email" name="e_Mail" onChange={(e)=>this.handleChange({e_Mail:e.target.value})} />
+           </FloatingLabel>
             </Form.Group>
+            </Col>
+                
 
             <Form.Group className="mb-3" controlId="formGroupPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" name="password" onChange={(e)=>this.handleChange({password:e.target.value})} /><br/>
+            
+            <FloatingLabel controlId="floatingInputGrid" label="Password">
+            <Form.Control type="password" placeholder="Password" name="password" onChange={(e)=>this.handleChange({password:e.target.value})} />
+            </FloatingLabel>
             </Form.Group>
-      <Button  variant="danger" onClick={this.Login}>Sign in</Button>
-
+            <Col md={{ span: 6, offset: 3 }}>{<Button  variant="danger" onClick={this.Login} >Sign in</Button>}</Col>
              
             
             </form>
             </Card.Body>
+            <Card.Footer>If you are a new user <a href="CreateEmp">Register here</a></Card.Footer>
             </Card>
             
             </div>
