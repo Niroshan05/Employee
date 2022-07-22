@@ -13,6 +13,9 @@ import EmployeeDashboard from './Employee/EmployeeDashboard';
 
 import ShowAllLeave from './LeaveManagement/ShowAllLeave';
 import AddLeave from './LeaveManagement/AddLeave';
+import ShowSpecificLeave from './LeaveManagement/ShowSpecificLeave';
+
+import SearchByIdMan from './Manager/SearchByIdMan';
 
  
 function App() {
@@ -95,6 +98,8 @@ function App() {
         <Route path="/EmployeeDashboard" element={<EmployeeDashboard/>}></Route>
         <Route path="/AllLeave" element={<ShowAllLeave/>}></Route>
         <Route path="/AddLeave" element={<AddLeave/>}></Route>
+        <Route path="/SpecificLeave" element={<ShowSpecificLeave/>}></Route>
+        <Route path="/SearchByIdMan" element={<SearchByIdMan></SearchByIdMan>}></Route>
         
     
      
